@@ -69,10 +69,22 @@ def show_grades(github):
         first_name, last_name, project_title, grade = item
         dict_of_grades[project_title] = grade
     return dict_of_grades
-    # print "Grades for %s %s" % (first_name, last_name)
-    # for item in row:
-    #     print """\
-    #     Project: %s \tGrade: %s""" % (item[2], item[3])
+
+def get_students_and_grades(project):
+    """Gets all students and grades for a given project"""
+    query = """SELECT Students.github, Students.first_name, Students.last_name, Grades.grade FROM Students JOIN Grades ON 
+        (Students.github = Grades.student_github) WHERE Grades.project_title = ?"""
+    DB.execute(query, (project,))
+    row = DB.fetchall()
+    dict_of_students = {}
+    for student in row:
+        github, first_name, last_name, grade = student
+        dict_of_students.setdefault(github, {})
+        dict_of_students[github].setdefault("first_name", first_name)
+        dict_of_students[github].setdefault("last_name", last_name)
+        dict_of_students[github].setdefault("grade", grade)
+    return dict_of_students
+
 
 
 def parse_arguments(input_string):

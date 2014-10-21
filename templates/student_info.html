@@ -8,7 +8,7 @@
 		<table>
 			{% for project in projects_and_grades %}
 			<tr>
-				<td>{{ project }}</td>
+				<td><a href="/projects?project={{ project }}">{{ project }}</a> </td>
 				<td>{{ projects_and_grades[project] }}</td>
 			<tr>
 			{% endfor %}

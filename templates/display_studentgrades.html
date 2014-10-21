@@ -1,0 +1,24 @@
+<html>
+<head>
+</head>
+<body>
+	<h2>Project: {{ project }}</h2>
+	{% if students_and_grades %}
+
+		<table>
+			<tr>
+				<th>First Name</th>
+				<th>Last Name</th>
+				<th>Grade</th>
+			</tr>
+			{% for student in students_and_grades %}
+			<tr>
+				<td>{{ students_and_grades[student]["first_name"] }}</td>
+				<td>{{ students_and_grades[student]["last_name"] }}</td>
+				<td>{{ students_and_grades[student]["grade"] }}</td>
+			<tr>
+			{% endfor %}
+		</table>
+	{% endif %}
+</body>
+</html>

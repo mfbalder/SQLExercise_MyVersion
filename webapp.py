@@ -18,5 +18,11 @@ def get_student():
 	# print dict_of_grades
 	return html
 
+@app.route("/projects")
+def project_info():
+	project = request.args.get("project")
+	students_and_gradesdict = hackbright_app.get_students_and_grades(project)
+	return render_template("display_studentgrades.html", students_and_grades = students_and_gradesdict, project = project) 
+
 if __name__ == "__main__":
 	app.run(debug=True)
