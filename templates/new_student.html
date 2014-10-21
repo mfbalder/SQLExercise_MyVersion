@@ -1,0 +1,28 @@
+<html>
+	<head>
+		<style>
+
+		</style>
+	</head>
+<body>
+	<form action="/add_student">
+		<div id="github">
+			<label for="github">Github ID </label>
+			<input type="text" name="github" id="github"/>
+		</div>
+		<div id="first_name">
+			<label for="first_name">First Name </label>
+			<input type="text" name="first_name" id="first_name">
+		</div>
+		<div id="last_name">
+			<label for="last_name">Last Name </label>
+			<input type="text" name="last_name" id="last_name">
+		</div>
+		<div id="submit">
+			<input type="submit">
+		</div>
+	</form>
+
+	{% block body %}{% endblock %}
+</body>
+</html>

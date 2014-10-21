@@ -72,7 +72,7 @@ def show_grades(github):
 
 def get_students_and_grades(project):
     """Gets all students and grades for a given project"""
-    query = """SELECT Students.github, Students.first_name, Students.last_name, Grades.grade FROM Students JOIN Grades ON 
+    query = """SELECT Students.github, Students.first_name, Students.last_name, Grades.grade FROM Students LEFT JOIN Grades ON 
         (Students.github = Grades.student_github) WHERE Grades.project_title = ?"""
     DB.execute(query, (project,))
     row = DB.fetchall()

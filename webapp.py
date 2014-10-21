@@ -24,5 +24,27 @@ def project_info():
 	students_and_gradesdict = hackbright_app.get_students_and_grades(project)
 	return render_template("display_studentgrades.html", students_and_grades = students_and_gradesdict, project = project) 
 
+@app.route("/new_student")
+def new_student():
+	return render_template("new_student.html")
+
+@app.route("/add_student")
+def add_student():
+	hackbright_app.connect_to_db()
+	github = request.args.get("github")
+	first_name = request.args.get("first_name")
+	last_name = request.args.get("last_name")
+	try:
+		check_student = hackbright_app.get_student_by_github(github)
+		message = "%s %s already exists in the system" % (first_name, last_name)
+	except:
+		hackbright_app.make_new_student(first_name, last_name, github)
+		message = "%s %s has been successfully added" % (first_name, last_name)
+	return render_template("student_added.html", message = message)
+
+
+	
+
+
 if __name__ == "__main__":
 	app.run(debug=True)

@@ -6,6 +6,10 @@
 	<h2>Github: {{ github }}</h2>
 	{% if projects_and_grades %}
 		<table>
+			<tr>
+				<th>Project</th>
+				<th>Grade</th>
+			</tr>
 			{% for project in projects_and_grades %}
 			<tr>
 				<td><a href="/projects?project={{ project }}">{{ project }}</a> </td>
