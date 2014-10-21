@@ -7,9 +7,12 @@ def get_student_by_github(github):
     query = """SELECT first_name, last_name, github FROM Students WHERE github = ?"""
     DB.execute(query, (github,))
     row = DB.fetchone()
-    print """\
-    Student: %s %s
-    Github account: %s"""%(row[0], row[1], row[2])
+    student_info = {}
+    student_info["first_name"], student_info["last_name"], student_info["github"] = row
+    return student_info
+    # return """\
+    # Student: %s %s
+    # Github account: %s"""%(row[0], row[1], row[2])
 
 def make_new_student(first_name, last_name, github):
     query = """INSERT INTO Students (first_name, last_name, github) VALUES (?, ?, ?)"""
@@ -61,10 +64,16 @@ def show_grades(github):
         Students JOIN Grades ON (Students.github=Grades.student_github) WHERE Students.github = ?"""
     DB.execute(query, (github,))
     row = DB.fetchall()
-    print "Grades for %s %s" % (first_name, last_name)
+    dict_of_grades = {}
     for item in row:
-        print """\
-        Project: %s \tGrade: %s""" % (item[2], item[3])
+        first_name, last_name, project_title, grade = item
+        dict_of_grades[project_title] = grade
+    return dict_of_grades
+    # print "Grades for %s %s" % (first_name, last_name)
+    # for item in row:
+    #     print """\
+    #     Project: %s \tGrade: %s""" % (item[2], item[3])
+
 
 def parse_arguments(input_string):
     """Parses the user input in case arguments are within quotes"""

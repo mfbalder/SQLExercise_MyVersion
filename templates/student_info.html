@@ -1,0 +1,19 @@
+<html>
+<head>
+</head>
+<body>
+	<h1>Student: {{ first_name }} {{ last_name  }}</h1>
+	<h2>Github: {{ github }}</h2>
+	{% if projects_and_grades %}
+		<table>
+			{% for project in projects_and_grades %}
+			<tr>
+				<td>{{ project }}</td>
+				<td>{{ projects_and_grades[project] }}</td>
+			<tr>
+			{% endfor %}
+		</table>
+	{% endif %}
+</body>
+</html>
+
