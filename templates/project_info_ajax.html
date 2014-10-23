@@ -1,0 +1,38 @@
+<html>
+<body>
+<h1>Get Project Info</h1>
+
+ <form id="project-info-form" action='/project-snippet'>
+ <input name="project" id="project-id-field" type="text">
+ <input type="submit">
+</form>
+
+<button id="markov">Get Markov</button>
+
+<div id="projects-list"></div>
+
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script>
+  $("#project-info-form").submit(
+  		function (evt) {
+  		  // var qs = "project=" + $("project-id-field").val();
+  		  var qs = $("#project-info-form").serialize();   // project=Markov&color=blue
+  		  alert(qs);
+  		  evt.preventDefault();
+		  $("#projects-list").load("/project-snippet?" + qs) 
+  		}
+  	);
+  $("#markov").click(
+  		function (evt) {
+  		  // var qs = "project=" + $("project-id-field").val();
+  		  evt.preventDefault();
+		  $("#projects-list").load("/project-snippet?project=Markov"); 
+  		}
+
+  	);
+  // add form submit handler
+  // AJAX call to get & put what it reutrns in my DIV
+</script>
+
+</body>
+</html>

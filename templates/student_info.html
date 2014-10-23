@@ -12,12 +12,26 @@
 			</tr>
 			{% for project in projects_and_grades %}
 			<tr>
-				<td><a href="/projects?project={{ project }}">{{ project }}</a> </td>
+				<td>{{ project }}</td>
 				<td>{{ projects_and_grades[project] }}</td>
+				<td><button id="{{ project }}" class="project-buttons">Get All Project Grades</button></td>
 			<tr>
 			{% endfor %}
 		</table>
 	{% endif %}
+
+	<div id="display-students-and-grades"></div>
+
+
+
+	<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script>
+
+		$(".project-buttons").click(function(evt){
+			var project = $(this).attr("id"); // get the id for the button clicked (aka the project name)
+			$("#display-students-and-grades").load("/project-snippet?project=" + project);
+		});
+	</script>
 </body>
 </html>
 

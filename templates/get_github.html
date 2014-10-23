@@ -1,9 +1,20 @@
 <html>
+<head>
+	<title>HSID</title>
+</head>
 <body>
+	<h2>Welcome to the Hackbright Student Information Database</h2>
+	<p>Enter Student Github account to retrieve grades for all projects:</p>
 	<form action="/student">
-		<label for="github">Enter github ID</label>
+		<label for="github">Github ID</label>
 		<input type="text" name="github" id="github"/>
 		<input type="submit">
+	</form>
+	<form action="/new_student">
+		<input type="submit" value="Add New Student to System">
+	</form>
+	<form action="/new_project">
+		<input type="submit" value="Add New Project Record to System"
 	</form>
 </body>
 </html>

@@ -1,10 +1,17 @@
 <html>
 	<head>
 		<style>
+			body {
+				margin: 10px;
+			}
 
+			#github, #first_name, #last_name, #submit {
+				margin: 5px;
+			}
 		</style>
 	</head>
 <body>
+	<h2>Add New Student:</h2>
 	<form action="/add_student">
 		<div id="github">
 			<label for="github">Github ID </label>
@@ -20,9 +27,17 @@
 		</div>
 		<div id="submit">
 			<input type="submit">
+			<input type="button" id="back" value="Back">
 		</div>
 	</form>
 
 	{% block body %}{% endblock %}
+
+	<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script>
+		$("#back").click(function(){
+			window.location.replace("/");
+		});
+	</script>
 </body>
 </html>
